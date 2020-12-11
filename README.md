@@ -310,6 +310,7 @@ Issue Data
 [Food Allergens/](http://www.foodallergens.info/)
 [Mast Cell 360](https://mastcell360.com/low-histamine-foods-list/)
 [Food Compatibility](https://www.mastzellaktivierung.info/downloads/foodlist/21_FoodList_EN_alphabetic_withCateg.pdf)
+[Healthline](https://www.healthline.com/nutrition/common-food-intolerances)
 
 
 #### [Epicodus](https://www.epicodus.com/)
