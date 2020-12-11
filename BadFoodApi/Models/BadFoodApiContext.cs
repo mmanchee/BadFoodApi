@@ -10,5 +10,6 @@ namespace BadFoodApi.Models
     }
     public DbSet<Food> Foods { get; set; }
     public DbSet<Nutrition> Nutritions { get; set; } 
+    public DbSet<Issue> Issues { get; set; }
   }
 }
