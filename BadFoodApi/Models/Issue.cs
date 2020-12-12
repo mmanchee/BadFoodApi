@@ -9,6 +9,7 @@ namespace BadFoodApi.Models
     public int Egg { get; set; }
     public int Fish { get; set; }
     public int FODMAP { get; set; }
+    public int Folate { get; set; }
     public int Fructose { get; set; }
     public int Gluten { get; set; }
     public int Histamine { get; set; }
@@ -24,3 +25,5 @@ namespace BadFoodApi.Models
     public int Sulfites { get; set; }
   }
 }
+
+// Amines,Caffeine,Egg,Fish,FODMAP,Folate,Fructose,Gluten,Histamine,Lactose,Lectin,Legume,Nut,Oxalte,Peanut,Salicylates,Shellfish,Soy,Sulfites

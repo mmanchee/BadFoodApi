@@ -13,12 +13,12 @@ namespace BadFoodApi.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class PlayersController : ControllerBase
+  public class NutritionController : ControllerBase
   {
     private BadFoodApiContext _db;
     private readonly IUriService uriService;
 
-    public PlayersController(BadFoodApiContext db, IUriService uriService)
+    public NutritionController(BadFoodApiContext db, IUriService uriService)
     {
       _db = db;
       this.uriService = uriService;
