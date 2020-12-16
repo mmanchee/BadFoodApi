@@ -312,6 +312,8 @@ Issue Data
 [Food Compatibility](https://www.mastzellaktivierung.info/downloads/foodlist/21_FoodList_EN_alphabetic_withCateg.pdf)
 [Healthline](https://www.healthline.com/nutrition/common-food-intolerances)
 
+Other Links
+[JsonSerialization](https://dev.to/thebuzzsaw/converting-dictionaries-in-system-text-json-474b)
 
 #### [Epicodus](https://www.epicodus.com/)
 >"A school for tech careers... to help people learn the skills they need to get great jobs."
