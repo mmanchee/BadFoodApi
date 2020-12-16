@@ -10,6 +10,7 @@ using BadFoodApi.Wrappers;
 using BadFoodApi.Helpers;
 using System.Collections.Generic;
 using System.Text.Json;
+using 
 
 namespace BadFoodApi.Controllers
 {
@@ -50,12 +51,25 @@ namespace BadFoodApi.Controllers
     public List<Food> Get( string input )
     {
       Dictionary<string,int> userData = JsonSerializer.Deserialize<Dictionary<string,int>>(input);
-      string mySqlString = "";
+      string mySqlString = "SELECT FoodId FROM issue WHERE ";
+      int num = 0;
       foreach(var kvp in userData) {
         if (kvp.Value > 0) { //kvp.Key, kvp.Value
-          mySqlString += ""
+          if (num > 0) {
+            mySqlString += " AND ";
+          };
+          mySqlString += $"{kvp.Key} < {kvp.Value}";
+          num++;
         }
       }
+
+      var goodFoodId = _db.Issues.FromSql(mySqlString).ToList();
+
+      List<Food> goodList = new List<Food>();
+      foreach(var item in goodFoodId) {
+        goodList = _db.Foods.Where(entry => entry.FoodId == item )
+      }
+      
       // List<string> data = input.Split(',').ToList();
       //List<string> DbNames = new List<string> {"Amines","Caffeine","Egg","Fish","FODMAP","Folate","Fructose","Gluten","Histamine","Lactose","Lectin","Legume","Nut","Oxalte","Peanut","Salicylates","Shellfish","Soy","Sulfites"};
       
