@@ -87,3 +87,31 @@ namespace BadFoodApi.Controllers
     }
   }
 }
+
+// userInput = (dictionary){"shellfish": 2, "caffeine": 4, soy: 2}
+// let goodFoodsArr = [];
+// let query = db.get()
+// for (each entry in userInputDictionary) {
+    // query + ".where({entryKeyName >= entryVal}) 
+    // db.get().where(shellfish >= 2).where(caffeine >= 4).where(soy >= 2)
+}
+// listOfAllFoodsFromDatabase.forEach(foodRow in db) {
+    // if (!foodRow.where(shellfish >= 2).where(caffeine >= 4).where(soy>=2))
+        // goodFoodsArr.push(foodRow.foodID)
+//}
+// goodFoodsArr: [300, 451, 23, 90892384]
+// forEach(foodId in goodFoodsArr) return foodName
+
+good : [1,2,3,4,5,6,7,8,9] // first list
+List1 : [2,3,4,5,6,8,9]
+
+good : [2,3,4,5,6,8,9]
+List2 : [1,2,3,4,7,8,9]
+
+good : [2,3,4,8,9]
+List3 : [1,2,4,5,6,8]
+
+good : [2,4,8]
+
+Entity for raw sql
+dynamic update
