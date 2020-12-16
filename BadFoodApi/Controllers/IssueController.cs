@@ -9,6 +9,7 @@ using BadFoodApi.Filter;
 using BadFoodApi.Wrappers;
 using BadFoodApi.Helpers;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace BadFoodApi.Controllers
 {
@@ -43,12 +44,19 @@ namespace BadFoodApi.Controllers
       var issues = await _db.Issues.Where(a => a.FoodId == id).FirstOrDefaultAsync();
       return Ok(new Response<Issue>(issues));
     }
+
     // get list of Good Foods
-    // input list of levels
     [HttpGet("FoodList")]
     public List<Food> Get( string input )
     {
-      List<string> data = input.Split(',').ToList();
+      Dictionary<string,int> userData = JsonSerializer.Deserialize<Dictionary<string,int>>(input);
+      string mySqlString = "";
+      foreach(var kvp in userData) {
+        if (kvp.Value > 0) { //kvp.Key, kvp.Value
+          mySqlString += ""
+        }
+      }
+      // List<string> data = input.Split(',').ToList();
       //List<string> DbNames = new List<string> {"Amines","Caffeine","Egg","Fish","FODMAP","Folate","Fructose","Gluten","Histamine","Lactose","Lectin","Legume","Nut","Oxalte","Peanut","Salicylates","Shellfish","Soy","Sulfites"};
       
       List<Food> foodList = _db.Foods.ToList();
@@ -115,3 +123,20 @@ good : [2,4,8]
 
 Entity for raw sql
 dynamic update
+
+var obj = new Dictionary<string, int> 
+{
+  ["Amines"] = 0,
+  ["Folate"] = 1,
+  ["Fish"] = 0,
+  ["Shellfish"] = 1,
+  ["hist"] = 2
+}
+
+var raw = JsonSerializer.Serialize(obj);
+
+Console.WriteLine(raw);
+
+var back = JsonSerializer.Deserialize<Dictionary<string,int>>(raw);
+
+Console.WriteLine(raw);
