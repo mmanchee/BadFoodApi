@@ -6,7 +6,7 @@
     <!-- Project Avatar/Logo -->
     <br>
      <a href="https://github.com/mmanchee/BadFoodApi">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRg8aIzTS1I4DgL0ebgoa0vOWW16cXBqY4JBw&usqp=CAU">
+        <img src="">
     </a>
     </a>
     <p align="center">
