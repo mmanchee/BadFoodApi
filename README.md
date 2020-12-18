@@ -205,7 +205,7 @@ For more information or to see how CORS functions, see the [Microsoft documentat
 
 #### Example Query
 ```
-https://localhost:5000/api/games/
+https://localhost:5000/api/foods/
 ```
 
 To use default, _don't include_ `limit` and `start` or set them equal to zero.
@@ -242,7 +242,7 @@ Get/Users
 
 #### Example Query
 ```
-https://localhost:5000/api/Games/2
+https://localhost:5000/api/Foods/2
 ```
 
 #### Sample JSON Response
