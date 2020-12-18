@@ -4,4 +4,5 @@ namespace BadFoodApi.Helpers
     {
         public string Secret { get; set; }
     }
+    
 }
