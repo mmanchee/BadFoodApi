@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mikem\\Desktop\\coding-practice\\BadFoodApi.Solution\\BadFoodApi\\BadFoodApi.csproj": {}
+    "C:\\Users\\mikem\\Desktop\\coding-practice\\BadFoodApi.Solution\\badfoodapi\\BadFoodApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mikem\\Desktop\\coding-practice\\BadFoodApi.Solution\\BadFoodApi\\BadFoodApi.csproj": {
+    "C:\\Users\\mikem\\Desktop\\coding-practice\\BadFoodApi.Solution\\badfoodapi\\BadFoodApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mikem\\Desktop\\coding-practice\\BadFoodApi.Solution\\BadFoodApi\\BadFoodApi.csproj",
+        "projectUniqueName": "C:\\Users\\mikem\\Desktop\\coding-practice\\BadFoodApi.Solution\\badfoodapi\\BadFoodApi.csproj",
         "projectName": "BadFoodApi",
-        "projectPath": "C:\\Users\\mikem\\Desktop\\coding-practice\\BadFoodApi.Solution\\BadFoodApi\\BadFoodApi.csproj",
+        "projectPath": "C:\\Users\\mikem\\Desktop\\coding-practice\\BadFoodApi.Solution\\badfoodapi\\BadFoodApi.csproj",
         "packagesPath": "C:\\Users\\mikem\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mikem\\Desktop\\coding-practice\\BadFoodApi.Solution\\BadFoodApi\\obj\\",
+        "outputPath": "C:\\Users\\mikem\\Desktop\\coding-practice\\BadFoodApi.Solution\\badfoodapi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

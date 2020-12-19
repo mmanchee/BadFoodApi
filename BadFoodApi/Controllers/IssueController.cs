@@ -1,78 +1,77 @@
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using BadFoodApi.Models;
-using BadFoodApi.Services;
-using BadFoodApi.Filter;
-using BadFoodApi.Wrappers;
-using BadFoodApi.Helpers;
-using System.Collections.Generic;
-using System.Text.Json;
-using 
+// using Microsoft.EntityFrameworkCore;
+// using System;
+// using System.Threading.Tasks;
+// using System.Linq;
+// using Microsoft.AspNetCore.Mvc;
+// using BadFoodApi.Models;
+// using BadFoodApi.Services;
+// using BadFoodApi.Filter;
+// using BadFoodApi.Wrappers;
+// using BadFoodApi.Helpers;
+// using System.Collections.Generic;
+// using System.Text.Json;
 
-namespace BadFoodApi.Controllers
-{
-  [Route("api/[controller]")]
-  [ApiController]
-  public class IssueController : ControllerBase
-  {
-    private BadFoodApiContext _db;
-    private readonly IUriService uriService;
+// namespace BadFoodApi.Controllers
+// {
+//   [Route("api/[controller]")]
+//   [ApiController]
+//   public class IssueController : ControllerBase
+//   {
+//     private BadFoodApiContext _db;
+//     private readonly IUriService uriService;
 
-    public IssueController(BadFoodApiContext db, IUriService uriService)
-    {
-      _db = db;
-      this.uriService = uriService;
-    }
-    [HttpGet]
-    public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter )
-    {
-      var route = Request.Path.Value;
-      var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-      var query = _db.Issues.AsQueryable();
-      query = query.Skip((validFilter.PageNumber -1 ) * validFilter.PageSize).Take(validFilter.PageSize);
-      var totalRecords = await _db.Issues.CountAsync();
-      var pagedResponse = PaginationHelper.CreatePagedResponse<Issue>(query.ToList(), validFilter, totalRecords, uriService, route);
-      return Ok(pagedResponse);
-    }
+//     public IssueController(BadFoodApiContext db, IUriService uriService)
+//     {
+//       _db = db;
+//       this.uriService = uriService;
+//     }
+//     [HttpGet]
+//     public async Task<IActionResult> GetAll([FromQuery] PaginationFilter filter )
+//     {
+//       var route = Request.Path.Value;
+//       var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+//       var query = _db.Issues.AsQueryable();
+//       query = query.Skip((validFilter.PageNumber -1 ) * validFilter.PageSize).Take(validFilter.PageSize);
+//       var totalRecords = await _db.Issues.CountAsync();
+//       var pagedResponse = PaginationHelper.CreatePagedResponse<Issue>(query.ToList(), validFilter, totalRecords, uriService, route);
+//       return Ok(pagedResponse);
+//     }
 
-    //by Food id
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(int id)
-    {
-      var issues = await _db.Issues.Where(a => a.FoodId == id).FirstOrDefaultAsync();
-      return Ok(new Response<Issue>(issues));
-    }
+//     //by Food id
+//     [HttpGet("{id}")]
+//     public async Task<IActionResult> GetById(int id)
+//     {
+//       var issues = await _db.Issues.Where(a => a.FoodId == id).FirstOrDefaultAsync();
+//       return Ok(new Response<Issue>(issues));
+//     }
 
-    // get list of Good Foods
-    [HttpGet("FoodList")]
-    public List<Food> Get( string input )
-    {
-      Dictionary<string,int> userData = JsonSerializer.Deserialize<Dictionary<string,int>>(input);
-      string mySqlString = "SELECT * FROM issue WHERE ";
-      int num = 0;
-      foreach(var kvp in userData) {
-        if (kvp.Value > 0) { //kvp.Key, kvp.Value
-          if (num > 0) {
-            mySqlString += " AND ";
-          };
-          mySqlString += $"{kvp.Key} < {kvp.Value}";
-          num++;
-        }
-      }
+//     // get list of Good Foods
+//     [HttpGet("FoodList")]
+//     public List<Food> Get( string input )
+//     {
+//       Dictionary<string,int> userData = JsonSerializer.Deserialize<Dictionary<string,int>>(input);
+//       string mySqlString = "SELECT * FROM issue WHERE ";
+//       int num = 0;
+//       foreach(var kvp in userData) {
+//         if (kvp.Value > 0) { //kvp.Key, kvp.Value
+//           if (num > 0) {
+//             mySqlString += " AND ";
+//           };
+//           mySqlString += $"{kvp.Key} < {kvp.Value}";
+//           num++;
+//         }
+//       }
 
-      List<Issue> goodFoodId = _db.Issues.FromSql(mySqlString).ToList();
+//       List<Issue> goodFoodId = _db.Issues.FromSql(mySqlString).ToList();
 
-      List<Food> goodList = new List<Food>();
-      foreach(var item in goodFoodId) {
-        goodList.Add(_db.Foods.FromSql($"SELECT * FROM food WHERE foodId = {item.FoodId}").FirstOrDefault());
-      }
-      return goodList;
-    }
-  }
-}
+//       List<Food> goodList = new List<Food>();
+//       foreach(var item in goodFoodId) {
+//         goodList.Add(_db.Foods.FromSql($"SELECT * FROM food WHERE foodId = {item.FoodId}").FirstOrDefault());
+//       }
+//       return goodList;
+//     }
+//   }
+// }
 //       List<string> data = input.Split(',').ToList();
 //       List<string> DbNames = new List<string> {"Amines","Caffeine","Egg","Fish","FODMAP","Folate","Fructose","Gluten","Histamine","Lactose","Lectin","Legume","Nut","Oxalte","Peanut","Salicylates","Shellfish","Soy","Sulfites"};
       

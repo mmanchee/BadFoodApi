@@ -8,16 +8,18 @@ using BadFoodApi.Services;
 using BadFoodApi.Filter;
 using BadFoodApi.Wrappers;
 using BadFoodApi.Helpers;
+using System.Collections.Generic;
+using System.Text.Json;
 
 namespace BadFoodApi.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class GamesController : ControllerBase
+  public class FoodsController : ControllerBase
   {
     private BadFoodApiContext _db;
     private readonly IUriService uriService;
-    public GamesController(BadFoodApiContext db, IUriService uriService)
+    public FoodsController(BadFoodApiContext db, IUriService uriService)
     {
       _db = db;
       this.uriService = uriService;
@@ -69,6 +71,25 @@ namespace BadFoodApi.Controllers
       var pagedResponse = PaginationHelper.CreatePagedResponse<Food>(query.ToList(), validFilter, fullList, uriService, route);
 
       return Ok(pagedResponse);
+    }
+    [HttpGet("FoodList")]
+    public List<Food> GetFoods( string input )
+    {
+      Dictionary<string,int> userData = JsonSerializer.Deserialize<Dictionary<string,int>>(input);
+      string mySqlString = "SELECT * FROM foods WHERE ";
+      int num = 0;
+      foreach(var kvp in userData) {
+        if (kvp.Value > 0) { //kvp.Key, kvp.Value
+          if (num > 0) {
+            mySqlString += " AND ";
+          };
+          mySqlString += $"{kvp.Key} < {kvp.Value}";
+          num++;
+        }
+      }
+      List<Food> goodFoods = _db.Foods.FromSql(mySqlString).ToList();
+
+      return goodFoods;
     }
   }
 }
