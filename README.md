@@ -184,12 +184,12 @@ Get Nutrition on a Food
 Explore the API endpoints in Postman or a browser. You will not be able to utilize authentication in a browser.
 
 ### Using Swagger Documentation 
-To explore the Historical Football Stats api with NSwag, launch the project using `dotnet run` with the Terminal or Powershell, and input the following URL into your browser: `http://localhost:5000/swagger/index.html`
+To explore the Historical Football Stats api with NSwag, launch the project using `dotnet run` with the Terminal or Powershell, and input the following URL into your browser: `http://localhost:5003/swagger/index.html`
 <img src="" />
 
 ### Using the JSON Web Token
 In order to be authorized to use the POST, PUT, DELETE functionality of the API, please authenticate yourself through Postman.
-* Open Postman and create a POST request using the URL: `http://localhost:5000/api/users/authenticate`
+* Open Postman and create a POST request using the URL: `http://localhost:5003/api/users/authenticate`
 * Add the following query to the request as raw data in the Body tab:
 ```
 {
@@ -205,56 +205,72 @@ For more information or to see how CORS functions, see the [Microsoft documentat
 
 #### Example Query
 ```
-https://localhost:5000/api/foods/
+https://localhost:5003/api/foods/
 ```
 
 To use default, _don't include_ `limit` and `start` or set them equal to zero.
 
 ### Endpoints
-Base URL: `https://localhost:5000`
+Base URL: `https://localhost:5003`
 
 
-![picture](images/swaggerEndpoints.jpg)
+![picture](./img/BadFoodApi-Swagger.png)
 
 
 #### HTTP Request Structure
-```
-FOOD
-GET /api/
-GET /api/
-GET /api/
-GET /api/
 
-NUTRITION
-GET /api/
-GET /api/
-GET /api/
-
-ISSUE
-DET /api/
-
-USERS
-POST /Users/authenticate
-Get/Users
-
-
-```
+| Method | Location | Description |
+|--------|:------:|:-----:|
+|Food|...|...|
+|GET|/api/Foods|Full food List|
+|GET|/api/Foods/{id}|Food by id|
+|GET|/api/Foods/search|search by Name, Category, Sub Category, or Description|
+|GET|/api/Foods/FoodList|Accepts JSON string|
+|...|...|...|
+|Users|...|...|
+|POST|/Users/authenticate|...|
+|GET|/Users|...|
 
 #### Example Query
 ```
-https://localhost:5000/api/Foods/2
+https://localhost:5003/api/Foods/2
 ```
 
 #### Sample JSON Response
 ```
-JSON FORMED EXAMPLE
+{
+  "data": {
+    "foodId": 26,
+    "name": "ARTICHOKES",
+    "category": "VEG",
+    "subCat": "FLOWER",
+    "description": "ARTICHOKES,(GLOBE OR FRENCH),RAW",
+    "fdcId": 11007,
+    "caffeine": 0,
+    "egg": 0,
+    "fish": 0,
+    "fodmap": 3,
+    "fructose": 2,
+    "gluten": 0,
+    "histamine": 1,
+    "lactose": 0,
+    "lectin": 0,
+    "legume": 0,
+    "nut": 0,
+    "oxalte": 0,
+    "salicylates": 0,
+    "shellfish": 0,
+    "soy": 0,
+    "sulfites": 0,
+    "tryamine": 1
+  },
+  "succeeded": true,
+  "errors": null,
+  "message": ""
+}
 ```
 
-..........................................................................................
-
-
-..........................................................................................
-
+![picture](./img/FoodIdJson.png)
 ------------------------------
 
 ### 🤝 Contributors
