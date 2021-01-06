@@ -46,7 +46,7 @@ namespace BadFoodApi.Controllers
 
     //Search
     [HttpGet("search")]
-    public async Task<IActionResult> Search([FromQuery] PaginationFilter filter, string Name, string Category, string SubCat)
+    public async Task<IActionResult> Search([FromQuery] PaginationFilter filter, string Name, string Category, string SubCat, string Description)
     {
       var route = Request.Path.Value;
       var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
@@ -54,15 +54,19 @@ namespace BadFoodApi.Controllers
 
       if (Name != null)
       {
-        query = query.Where(entry => entry.Name == Name); 
+        query = query.Where(entry => entry.Name.Contains(Name)); 
       }
       if (Category != null)
       {
-        query = query.Where(entry => entry.Category == Category);
+        query = query.Where(entry => entry.Category.Contains(Category));
       }
       if (SubCat != null)
       {
-        query = query.Where(entry => entry.SubCat == SubCat);
+        query = query.Where(entry => entry.SubCat.Contains(SubCat));
+      }
+      if (Description != null)
+      {
+        query = query.Where(entry => entry.Description.Contains(Description));
       }
 
       query = query.Skip((validFilter.PageNumber - 1) * validFilter.PageSize).Take(validFilter.PageSize);
